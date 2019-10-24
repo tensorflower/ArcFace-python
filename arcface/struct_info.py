@@ -183,8 +183,8 @@ class ASF_LivenessInfo(Structure):
 
 # 活体置信度
 class ASF_LivenessThreshold(Structure):
-    thresholdmodel_BGR:int
-    thresholdmodel_IR:int
+    thresholdmodel_BGR:float
+    thresholdmodel_IR:float
     _fields_ = [('thresholdmodel_BGR',  c_float),      #0:非真人；1:真人；-1：不确定；-2:传入人脸数>1
                 ('thresholdmodel_IR', c_float)                    #检测的人脸个数
                 ]
