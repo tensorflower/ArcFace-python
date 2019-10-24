@@ -14,7 +14,7 @@ python调用虹软人脸识别v2.2版本动态链接库完成人脸检测/跟踪
 &ensp;&ensp;&ensp;&ensp; `libarcsoft_face_engine.so` `libarcsoft_face.so` (linux)
 
 
-- 修改 `demo.py` 文件中的 APPID 与 SDKKey变量
+- 修改 `demo.py` 文件中的 `APPID` 与 `SDKKey` 变量
 
 ```python
     APPID = b''
@@ -41,4 +41,4 @@ python调用虹软人脸识别v2.2版本动态链接库完成人脸检测/跟踪
 
 - 注意：测试图片的宽度需为4的整数倍
 
-- demo 内容和提供的c++demo 基本类似，更多状态码内容对照doc目录下的文档即可
+- demo 内容和提供的c++demo 基本类似，更多状态码内容对照下载的SDK文件中doc目录下的文档即可
