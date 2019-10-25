@@ -113,6 +113,7 @@ img3_gray  = cv2.cvtColor(img3,cv2.COLOR_BGR2GRAY)
 
 res,detectedFaces3 = face_engine.ASFDetectFaces(img3)
 
+
 if (res != MOK):
     print ("ASFGetLivenessScore fail: {}".format(res))
 
