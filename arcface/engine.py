@@ -196,14 +196,6 @@ class ArcFace():
         """
         return lib_func.ASFSetLivenessParam(self.Handle,threshold)
 
-    def simulate_detectedFaces(self,position):
-        detectedFaces = ASF_MultiFaceInfo()
-        faceRect = (MRECT * 1)((position[0], position[1], position[2], position[3]))
-        detectedFaces.faceRect = faceRect
-        detectedFaces.faceOrient = (c_int32 * 1)(1)
-        detectedFaces.faceNum = 1
-        return detectedFaces
-
     def ASFUninitEngine(self):
         """
         销毁引擎
