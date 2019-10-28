@@ -3,6 +3,7 @@ from arcface.struct_info import *
 from ctypes import *
 
 MOK=0  #函数调用成功状态码
+MERR_ASF_ALREADY_ACTIVATED=90114 #已激活状态返回码
 
 ASF_NONE =0x00000000	#无属性
 ASF_FACE_DETECT =0x00000001	#此处detect可以是tracking或者detection两个引擎之一，具体的选择由detect mode 确定
