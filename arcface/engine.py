@@ -2,21 +2,23 @@ from arcface import lib_func
 from arcface.struct_info import *
 from ctypes import *
 
-MOK=0
-MERR_ASF_ALREADY_ACTIVATED = 0x16002
+MOK=0  #函数调用成功状态码
+MERR_ASF_ALREADY_ACTIVATED=90114 #已激活状态返回码
 
-ASF_DETECT_MODE_VIDEO = 0x00000000
-ASF_DETECT_MODE_IMAGE = 0xFFFFFFFF
-ASF_FACE_DETECT = 0x00000001
-ASF_FACERECOGNITION = 0x00000004
-ASF_AGE = 0x00000008
-ASF_GENDER = 0x00000010
-ASF_LIVENESS = 0x00000080
-ASF_FACE3DANGLE = 0x00000020
-ASF_IR_LIVENESS =0x00000400
-ASVL_PAF_RGB24_B8G8R8 = 0x201
-ASVL_PAF_GRAY = 0x701
+ASF_NONE =0x00000000	#无属性
+ASF_FACE_DETECT =0x00000001	#此处detect可以是tracking或者detection两个引擎之一，具体的选择由detect mode 确定
+ASF_FACERECOGNITION	= 0x00000004	#人脸特征
+ASF_AGE	= 0x00000008	#年龄
+ASF_GENDER	= 0x00000010	#性别
+ASF_FACE3DANGLE	= 0x00000020	#3D角度
+ASF_LIVENESS = 0x00000080	#RGB活体
+ASF_IR_LIVENESS	= 0x00000400	#红外活体
 
+ASF_DETECT_MODE_VIDEO = 0x00000000		#Video模式，一般用于多帧连续检测
+ASF_DETECT_MODE_IMAGE = 0xFFFFFFFF		#Image模式，一般用于静态图的单次检测
+
+ASVL_PAF_RGB24_B8G8R8 = 0x201  #RGB24位图，bgr格式(opencv 读取图像的默认格式)
+ASVL_PAF_GRAY = 0x701          #灰度图
 # 人脸检测方向
 ASF_OP_0_ONLY = 0x1 # 仅检测 0 度
 ASF_OP_90_ONLY = 0x2 # 仅检测 90 度
@@ -193,14 +195,6 @@ class ArcFace():
         :return:
         """
         return lib_func.ASFSetLivenessParam(self.Handle,threshold)
-
-    def simulate_detectedFaces(self,position):
-        detectedFaces = ASF_MultiFaceInfo()
-        faceRect = (MRECT * 1)((position[0], position[1], position[2], position[3]))
-        detectedFaces.faceRect = faceRect
-        detectedFaces.faceOrient = (c_int32 * 1)(1)
-        detectedFaces.faceNum = 1
-        return detectedFaces
 
     def ASFUninitEngine(self):
         """
