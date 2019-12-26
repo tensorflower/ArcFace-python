@@ -2,7 +2,7 @@ import cv2
 from  arcface.engine import *
 
 APPID = b''
-SDKKey = b'' 
+SDKKey = b''
 
 #激活接口,首次需联网激活
 res = ASFOnlineActivation(APPID, SDKKey)
@@ -48,6 +48,8 @@ if res==MOK:
     res ,face_feature1= face_engine.ASFFaceFeatureExtract(img1,single_detected_face1)
     if (res!=MOK):
         print ("ASFFaceFeatureExtract 1 fail: {}".format(res))
+else:
+    print("ASFDetectFaces 1 fail: {}".format(res))
 
 #检测第二张图中的人脸
 res,detectedFaces2 = face_engine.ASFDetectFaces(img2)
@@ -60,6 +62,8 @@ if res==MOK:
         pass
     else:
         print ("ASFFaceFeatureExtract 2 fail: {}".format(res))
+else:
+    print("ASFDetectFaces 2 fail: {}".format(res))
 
 #比较两个人脸的相似度
 res,score = face_engine.ASFFaceFeatureCompare(face_feature1,face_feature2)
@@ -106,6 +110,8 @@ if res == MOK:
         print("ASFGetLivenessScore fail: {}".format(res))
     else:
         print("RGB Liveness: {}".format( rgbLivenessInfo.isLive[0]))
+else:
+    print("ASFProcess fail: {}".format(res))
 
 # **************进行IR活体检测********************
 # opencv读图时会将灰度图读成RGB图，需要转换成GRAY图进行IR活体检测
